@@ -1,53 +1,67 @@
-const posts = [
+// // dummy data
+// const posts = [
 
-    {
-        title : "This is title 1",
-        body : "this is body 1",
-    },
-    {
-        title : "This is title 2",
-        body : "this is body 2",
-    },
-    {
-        title : "This is title 3",
-        body : "this is body 3",
-    },
-    {
-        title : "This is title 4",
-        body : "this is body 4",
-    },
-    {
-        title : "This is title 5",
-        body : "this is body 5",
-    },
-    {
-        title : "This is title 6",
-        body : "this is body 6",
-    },
-    {
-        title : "This is title 7",
-        body : "this is body 7",
-    },
-    {
-        title : "This is title 8",
-        body : "this is body 8",
-    },
-    {
-        title : "This is title 9",
-        body : "this is body 9",
-    },
-];
+//     {
+//         title : "This is title 1",
+//         body : "this is body 1",
+//     },
+//     {
+//         title : "This is title 2",
+//         body : "this is body 2",
+//     },
+//     {
+//         title : "This is title 3",
+//         body : "this is body 3",
+//     },
+//     {
+//         title : "This is title 4",
+//         body : "this is body 4",
+//     },
+//     {
+//         title : "This is title 5",
+//         body : "this is body 5",
+//     },
+//     {
+//         title : "This is title 6",
+//         body : "this is body 6",
+//     },
+//     {
+//         title : "This is title 7",
+//         body : "this is body 7",
+//     },
+//     {
+//         title : "This is title 8",
+//         body : "this is body 8",
+//     },
+//     {
+//         title : "This is title 9",
+//         body : "this is body 9",
+//     },
+// ];
 
 
-{/* <div class="post">
+/* <div class="post">
         <h4 class="post-title">post title 1</h4>
         <p class="post-body">description 1 </p>
-    </div> */}
+    </div> */
 
 //selection
+const fecthData  = async (config) => {
+    try {
+        const res = await axios(config);
+        return res.data;
+    } catch (error) {
+        throw Error("data is not fetched");
+    }
+};
+
+
+
 const postsElement = document.querySelector('.posts');
 
-const loadAllData  = () => {
+const loadAllData = async () => {
+    const posts = await fecthData("https://jsonplaceholder.typicode.com/posts");
+
     posts.map(post => {
         const postElement = document.createElement("div");
         postElement.classList.add("post");
